@@ -1,26 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
+static int t[100][1000];
 int knapsack(int wt[], int val[], int w, int n) {
 
-    if (n == 0 or w == 0)
+    memset(t, -1, sizeof(t)); 
+    for (int i = 0; i < n +1; i++)
     {
-        return 0;
+        for (int j = 0; j < w +1; j++) {
+
+            //Base condition
+            if(i == 0 or j == 0) {
+
+                t[i][j] = 0;
+            }
+        }
     }
+
     
-
-    if (wt[n -1] <= w)
+    for (int i = 1; i < n +1; i++)
     {
-        return max((val[n -1] + knapsack(wt, val, w -wt[n -1], n -1)), knapsack(wt, val, w, n -1));
+        for (int j = 1; j < w +1; j++) {
+
+            if (wt[i -1] <= j) {
+
+                t[i][j] = max(val[i -1] + t[i -1][j - wt[i -1]], t[i -1][j]);
+            }
+
+            else
+            {
+                t[i][j] = t[i -1][j];
+             }
+        }
     }
 
-    else if (wt[n -1] > w)
-    {
-        return knapsack(wt, val, w, n -1);
-    }
+    return t[n][w];
 
-    return 0;
-    
 }
 int main() {
 
@@ -36,7 +52,7 @@ int main() {
         cin>>wt[i];
         cout<<"Enter value"<<" "<<i +1 <<endl;
         cin>>val[i];
-
+        
     }
 
     cout<<"enter the weight of the bag"<<endl;

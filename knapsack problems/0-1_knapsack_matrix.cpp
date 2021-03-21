@@ -52,7 +52,7 @@ int main() {
     cout<<"enter the weight of the bag"<<endl;
     cin>>w;
 
-    cout<<knapsack(wt , val, w, n)<<endl;
+    cout<<"Max Profit is "<<knapsack(wt , val, w, n)<<endl;
     
 
     return 0;
