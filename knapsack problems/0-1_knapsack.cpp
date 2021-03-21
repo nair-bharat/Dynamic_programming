@@ -32,8 +32,11 @@ int main() {
     cout<<"enter the weight and value of the objects"<<endl;
     for (int i = 0; i < n; i++)
     {
+        cout<<"Enter weight"<<" "<<i +1 <<endl;
         cin>>wt[i];
+        cout<<"Enter value"<<" "<<i +1 <<endl;
         cin>>val[i];
+        
     }
 
     cout<<"enter the weight of the bag"<<endl;
